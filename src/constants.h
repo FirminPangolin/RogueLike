@@ -1,0 +1,26 @@
+#ifndef __CONSTANTS__H__
+#define __CONSTANTS__H__
+
+//Général
+#define SCREEN_WIDTH 1280
+#define SCREEN_HEIGHT 720
+
+
+//Joueur
+#define PLAYER_INIT_WIDTH 40
+#define PLAYER_INIT_HEIGHT 40
+
+#define PLAYER_INIT_SPEED 5
+#define PLAYER_MAX_SPEED 25
+
+#define PLAYER_INIT_HEALTH 3
+#define PLAYER_MAX_BULLETS 5
+
+//Bullets
+#define BULLET_INIT_WIDTH 20
+#define BULLET_INIT_HEIGHT 20
+
+#define BULLET_INIT_SPEED 10
+#define BULLET_MAX_SPEED 30
+
+#endif
