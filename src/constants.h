@@ -23,4 +23,7 @@
 #define BULLET_INIT_SPEED 10
 #define BULLET_MAX_SPEED 30
 
+//Map
+#define MAP_SIZE 4
+
 #endif
