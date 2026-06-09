@@ -6,6 +6,8 @@
 #include  "world.h"
 #include "bullet.h"
 #include "events.h"
+#include "room.h"
+#include "time.h"
 
 int main(void)
 {
@@ -13,8 +15,10 @@ int main(void)
 
     SetTargetFPS(60); //FPS du jeu
     
-    World* world = init_data();
+    srand(time(NULL));
 
+    World* world = init_data();
+       
     while (!WindowShouldClose() && !(world->player->health <= 0)) 
     {
         player_movement(world->player);

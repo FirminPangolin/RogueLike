@@ -39,5 +39,20 @@ void refresh_graphics(World* world){
             );
         }
 
+        //Map
+        for (int i = 0 ; i < MAP_SIZE ; i++){
+            for (int j = 0 ; j < MAP_SIZE ; j++){
+                if (world->map[i][j] == 1){
+                    DrawRectangle(
+                        j * (SCREEN_WIDTH / MAP_SIZE),
+                        i * (SCREEN_WIDTH / MAP_SIZE),
+                        SCREEN_WIDTH / MAP_SIZE, 
+                        SCREEN_WIDTH / MAP_SIZE, 
+                        YELLOW
+                    );
+                }
+            }
+        }
+
     EndDrawing();
 }

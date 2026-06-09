@@ -11,15 +11,18 @@
 typedef struct Room{
     bool exists;
 
-    bool up;
-    bool right;
-    bool down;
-    bool left;
+    struct Room* up;
+    struct Room* right;
+    struct Room* down;
+    struct Room* left;
+
+    int row;
+    int column;
 
     int type; //A voir plus tard
 } Room;
 
-Room* init_map();
+void gen_matrice();
 
 
 #endif
