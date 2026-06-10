@@ -20,3 +20,30 @@ void manage_bullets(Player* player){
         }
     }
 }
+
+void check_room_exit(World* world, Player* player){
+    //haut
+    if(world->act_room->up != NULL){
+        if (player->x >= SCREEN_WIDTH / 2 - GATE_WIDTH / 2 && player->x <= SCREEN_WIDTH / 2 + GATE_WIDTH / 2 && player->y <= GATE_HEIGHT){
+            world->act_room = world->act_room->up;
+        }
+    }
+    //droite
+    if(world->act_room->right != NULL){
+        if (player->x + PLAYER_INIT_WIDTH  >= SCREEN_WIDTH - GATE_HEIGHT && player->y >= SCREEN_HEIGHT / 2 - GATE_WIDTH / 2 && player->y <= SCREEN_HEIGHT / 2 + GATE_WIDTH / 2){
+            world->act_room = world->act_room->right;
+        }
+    }
+    //bas
+    if(world->act_room->down != NULL){
+        if (player->x >= SCREEN_WIDTH / 2 - GATE_WIDTH / 2 && player->x <= SCREEN_WIDTH / 2 + GATE_WIDTH / 2 && player->y  + PLAYER_INIT_HEIGHT >= SCREEN_HEIGHT - GATE_HEIGHT){
+            world->act_room = world->act_room->down;
+        }
+    }
+    //gauche
+    if(world->act_room->left != NULL){
+        if (player->x <= GATE_HEIGHT && player->y >= SCREEN_HEIGHT / 2 - GATE_WIDTH / 2 && player->y <= SCREEN_HEIGHT / 2 + GATE_WIDTH / 2){
+            world->act_room = world->act_room->left;
+        }
+    }
+}

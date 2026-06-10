@@ -7,9 +7,14 @@
 #include "player.h"
 #include "room.h"
 
+typedef struct Room Room;
+
 typedef struct World{
     Player* player;
     int map[MAP_SIZE][MAP_SIZE];
+
+    Room* rooms[MAP_SIZE][MAP_SIZE];
+    Room* act_room;
 } World;
 
 World* init_data();

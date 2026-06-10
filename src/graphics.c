@@ -3,6 +3,7 @@
 
 void refresh_graphics(World* world){
     Player* player = world->player;
+    Room* act_room = world->act_room;
 
     BeginDrawing();
         //Reset
@@ -40,18 +41,17 @@ void refresh_graphics(World* world){
         }
 
         //Map
-        for (int i = 0 ; i < MAP_SIZE ; i++){
-            for (int j = 0 ; j < MAP_SIZE ; j++){
-                if (world->map[i][j] == 1){
-                    DrawRectangle(
-                        j * (SCREEN_WIDTH / MAP_SIZE),
-                        i * (SCREEN_WIDTH / MAP_SIZE),
-                        SCREEN_WIDTH / MAP_SIZE, 
-                        SCREEN_WIDTH / MAP_SIZE, 
-                        YELLOW
-                    );
-                }
-            }
+        if(act_room->up != NULL){
+            DrawRectangle(SCREEN_WIDTH / 2 - GATE_WIDTH / 2, 0, GATE_WIDTH, GATE_HEIGHT, (act_room->type == 0)?BLUE:GREEN);
+        }
+        if(act_room->right != NULL){
+            DrawRectangle(SCREEN_WIDTH - GATE_HEIGHT, SCREEN_HEIGHT / 2 - GATE_WIDTH / 2, GATE_HEIGHT, GATE_WIDTH, (act_room->type == 0)?BLUE:GREEN);
+        }
+        if(act_room->down != NULL){
+            DrawRectangle(SCREEN_WIDTH / 2 - GATE_WIDTH / 2, SCREEN_HEIGHT - GATE_HEIGHT, GATE_WIDTH, GATE_HEIGHT, (act_room->type == 0)?BLUE:GREEN);
+        }
+        if(act_room->left != NULL){
+            DrawRectangle(0, SCREEN_HEIGHT / 2 - GATE_WIDTH / 2, GATE_HEIGHT, GATE_WIDTH, (act_room->type == 0)?BLUE:GREEN);
         }
 
     EndDrawing();

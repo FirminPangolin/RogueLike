@@ -25,5 +25,7 @@
 
 //Map
 #define MAP_SIZE 9
+#define GATE_WIDTH 100
+#define GATE_HEIGHT 20
 
 #endif
