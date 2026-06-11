@@ -27,7 +27,6 @@ int main(void)
         manage_bullets(world->player);
         check_room_exit(world, world->player);
 
-        printf("x : %d, y : %d\n", world->player->x, world->player->y);
         refresh_graphics(world);
     }
     

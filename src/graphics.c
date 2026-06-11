@@ -5,18 +5,20 @@ void refresh_graphics(World* world){
     Player* player = world->player;
     Room* act_room = world->act_room;
 
+    Image playerImg = LoadImage("ressources/persos/Characters/Soldier/Soldier/Soldier.png");
+    ImageCrop(&playerImg, (Rectangle){0, 0, 100, 100});
+    ImageResize(&playerImg, PLAYER_INIT_WIDTH, PLAYER_INIT_HEIGHT);
+
+    Texture2D playerTexture = LoadTextureFromImage(playerImg);
+
+    UnloadImage(playerImg);
+
     BeginDrawing();
         //Reset
         ClearBackground(WHITE);
 
         //Joueur
-        DrawRectangle(
-            player->x, 
-            player->y, 
-            player->width, 
-            player->height, 
-            ORANGE
-        );
+        DrawTexture(playerTexture, player->x, player->y, WHITE);
 
         //Vies
         for (int i = 0 ; i < player->health ; i++){
