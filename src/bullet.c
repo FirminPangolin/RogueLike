@@ -14,17 +14,17 @@ void create_bullet(Player* player){
     switch(player->facing){
         case 0: //Up
             //Position
-            bullet->x = player->x + player->width / 2;
-            bullet->y = player->y - bullet->height / 2;
+            bullet->x = player->x + player->width / 2 - bullet->width / 2 ;
+            bullet->y = player->y - bullet->height;
 
             //Données
             bullet->speedY = (-1) * BULLET_INIT_SPEED;
             break;
-//TODO : TEXTURES 
+
         case 1: //Right
             //Position
-            bullet->x = player->x + player->width / 2;
-            bullet->y = player->y + player->height  / 2;
+            bullet->x = player->x + player->width;
+            bullet->y = player->y + player->height  / 2 - bullet->height / 2;
 
             //Données
             bullet->speedX = BULLET_INIT_SPEED;
@@ -32,7 +32,7 @@ void create_bullet(Player* player){
         
         case 2: //Down
             //Position
-            bullet->x = player->x + player->width / 2 - bullet->height / 2;
+            bullet->x = player->x + player->width / 2 - bullet->width / 2 ;
             bullet->y = player->y + player->height;
 
             //Données
