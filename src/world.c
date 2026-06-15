@@ -5,6 +5,7 @@ World* init_data(){
     world->player = init_player();
     world->act_room = NULL;
     world->nbEnnemies = 0;
+    world->roomCleared = 0;
 
     gen_matrice(world->map);
     init_all_rooms(world);

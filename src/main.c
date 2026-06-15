@@ -31,6 +31,8 @@ int main(void)
         check_collision_ennemy_player(world);
         check_collision_ennemy_bullet(world);
 
+        check_room_cleared(world);
+
         refresh_graphics(world);
     }
     

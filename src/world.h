@@ -17,6 +17,7 @@ typedef struct World{
 
     Room* rooms[MAP_SIZE][MAP_SIZE];
     Room* act_room;
+    int roomCleared;
 
     Ennemy** ennemies;
     int nbEnnemies;

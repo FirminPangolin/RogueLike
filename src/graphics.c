@@ -36,24 +36,24 @@ void refresh_graphics(World* world){
 
         //Ennemies
         for (int i = 0 ; i < world->nbEnnemies; i++){
-            printf("%d\n", world->ennemies[i]->x);
             DrawRectangle(world->ennemies[i]->x - 2, world->ennemies[i]->y - 2, world->ennemies[i]->width + 4, world->ennemies[i]->height + 4, BLACK);
             DrawRectangle(world->ennemies[i]->x, world->ennemies[i]->y, world->ennemies[i]->width, world->ennemies[i]->height, YELLOW);
         }
 
         //Map
-        if(act_room->up != NULL){
-            DrawRectangle(SCREEN_WIDTH / 2 - GATE_WIDTH / 2, 0, GATE_WIDTH, GATE_HEIGHT, (act_room->type == 0)?BLUE:GREEN);
+        if (world->roomCleared == 1){
+            if(act_room->up != NULL){
+                DrawRectangle(SCREEN_WIDTH / 2 - GATE_WIDTH / 2, 0, GATE_WIDTH, GATE_HEIGHT, (act_room->type == 0)?BLUE:GREEN);
+            }
+            if(act_room->right != NULL){
+                DrawRectangle(SCREEN_WIDTH - GATE_HEIGHT, SCREEN_HEIGHT / 2 - GATE_WIDTH / 2, GATE_HEIGHT, GATE_WIDTH, (act_room->type == 0)?BLUE:GREEN);
+            }
+            if(act_room->down != NULL){
+                DrawRectangle(SCREEN_WIDTH / 2 - GATE_WIDTH / 2, SCREEN_HEIGHT - GATE_HEIGHT, GATE_WIDTH, GATE_HEIGHT, (act_room->type == 0)?BLUE:GREEN);
+            }
+            if(act_room->left != NULL){
+                DrawRectangle(0, SCREEN_HEIGHT / 2 - GATE_WIDTH / 2, GATE_HEIGHT, GATE_WIDTH, (act_room->type == 0)?BLUE:GREEN);
+            }
         }
-        if(act_room->right != NULL){
-            DrawRectangle(SCREEN_WIDTH - GATE_HEIGHT, SCREEN_HEIGHT / 2 - GATE_WIDTH / 2, GATE_HEIGHT, GATE_WIDTH, (act_room->type == 0)?BLUE:GREEN);
-        }
-        if(act_room->down != NULL){
-            DrawRectangle(SCREEN_WIDTH / 2 - GATE_WIDTH / 2, SCREEN_HEIGHT - GATE_HEIGHT, GATE_WIDTH, GATE_HEIGHT, (act_room->type == 0)?BLUE:GREEN);
-        }
-        if(act_room->left != NULL){
-            DrawRectangle(0, SCREEN_HEIGHT / 2 - GATE_WIDTH / 2, GATE_HEIGHT, GATE_WIDTH, (act_room->type == 0)?BLUE:GREEN);
-        }
-
     EndDrawing();
 }

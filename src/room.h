@@ -20,6 +20,7 @@ typedef struct Room{
     int row;
     int column;
 
+    int cleared;
     int type; //A voir plus tard
 } Room;
 

@@ -17,33 +17,63 @@ void manage_bullets(World* world, Player* player){
 }
 
 void check_room_exit(World* world, Player* player){
-    //haut
-    if(world->act_room->up != NULL){
-        if (player->x >= SCREEN_WIDTH / 2 - GATE_WIDTH / 2 && player->x + player->width <= SCREEN_WIDTH / 2 + GATE_WIDTH / 2 && player->y <= GATE_HEIGHT){
+    if (world->roomCleared){
+        //haut
+        if(world->act_room->up != NULL){
+            if (player->x >= SCREEN_WIDTH / 2 - GATE_WIDTH / 2 && player->x + player->width <= SCREEN_WIDTH / 2 + GATE_WIDTH / 2 && player->y <= GATE_HEIGHT){
+                change_room(world, player, 0);
+            }
+        }
+        //droite
+        if(world->act_room->right != NULL){
+            if (player->x + player->width  >= SCREEN_WIDTH - GATE_HEIGHT && player->y >= SCREEN_HEIGHT / 2 - GATE_WIDTH / 2 && player->y + player->height <= SCREEN_HEIGHT / 2 + GATE_WIDTH / 2){
+                change_room(world, player, 1);
+            }
+        }
+        //bas
+        if(world->act_room->down != NULL){
+            if (player->x >= SCREEN_WIDTH / 2 - GATE_WIDTH / 2 && player->x + player->width <= SCREEN_WIDTH / 2 + GATE_WIDTH / 2 && player->y  + player->height >= SCREEN_HEIGHT - GATE_HEIGHT){
+                change_room(world, player, 2);
+            }
+        }
+        //gauche
+        if(world->act_room->left != NULL){
+            if (player->x <= GATE_HEIGHT && player->y >= SCREEN_HEIGHT / 2 - GATE_WIDTH / 2 && player->y + player->height <= SCREEN_HEIGHT / 2 + GATE_WIDTH / 2){
+                change_room(world, player, 3);
+            }
+        }
+    }
+}
+
+void change_room(World* world, Player* player, int dir){
+    switch(dir){
+        case 0: //Haut
             world->act_room = world->act_room->up;
             player->y = SCREEN_HEIGHT - GATE_HEIGHT - player->height - 1;
-        }
-    }
-    //droite
-    if(world->act_room->right != NULL){
-        if (player->x + player->width  >= SCREEN_WIDTH - GATE_HEIGHT && player->y >= SCREEN_HEIGHT / 2 - GATE_WIDTH / 2 && player->y + player->height <= SCREEN_HEIGHT / 2 + GATE_WIDTH / 2){
+            if (!world->act_room->cleared) world->ennemies = create_room_ennemies(world);
+
+            break;
+
+        case 1: //Droite
             world->act_room = world->act_room->right;
             player->x = GATE_HEIGHT + 1;
-        }
-    }
-    //bas
-    if(world->act_room->down != NULL){
-        if (player->x >= SCREEN_WIDTH / 2 - GATE_WIDTH / 2 && player->x + player->width <= SCREEN_WIDTH / 2 + GATE_WIDTH / 2 && player->y  + player->height >= SCREEN_HEIGHT - GATE_HEIGHT){
+            if (!world->act_room->cleared) world->ennemies = create_room_ennemies(world);
+
+            break;
+
+        case 2: //Bas
             world->act_room = world->act_room->down;
             player->y = GATE_HEIGHT + 1;
-        }
-    }
-    //gauche
-    if(world->act_room->left != NULL){
-        if (player->x <= GATE_HEIGHT && player->y >= SCREEN_HEIGHT / 2 - GATE_WIDTH / 2 && player->y + player->height <= SCREEN_HEIGHT / 2 + GATE_WIDTH / 2){
+            if (!world->act_room->cleared) world->ennemies = create_room_ennemies(world);
+
+            break;
+
+        case 3: //Gauche
             world->act_room = world->act_room->left;
             player->x = SCREEN_WIDTH - GATE_HEIGHT - player->width - 1;
-        }
+            if (!world->act_room->cleared) world->ennemies = create_room_ennemies(world);
+
+            break;
     }
 }
 
@@ -97,5 +127,15 @@ void check_collision_ennemy_bullet(World* world){
                 }
             }
         }
+    }
+}
+
+void check_room_cleared(World* world){
+    if (world->nbEnnemies == 0){
+        world->roomCleared = 1;
+        world->act_room->cleared = 1;
+    }
+    else{
+        world->roomCleared = 0;
     }
 }
