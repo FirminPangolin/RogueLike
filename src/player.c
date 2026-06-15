@@ -17,6 +17,7 @@ Player* init_player(){
     player->speed = PLAYER_INIT_SPEED;
     player->health = PLAYER_INIT_HEALTH;
     player->facing = 1; //0 up, 1 right, 2 down, 3 left
+    player->invincible = 0;
 
     player->bullets = malloc(PLAYER_MAX_BULLETS * sizeof(Bullet));
     player->bullets_shot = 0;

@@ -4,6 +4,7 @@ World* init_data(){
     World* world = malloc(sizeof(World));
     world->player = init_player();
     world->act_room = NULL;
+    world->nbEnnemies = 0;
 
     gen_matrice(world->map);
     init_all_rooms(world);
@@ -14,5 +15,9 @@ World* init_data(){
         }
         printf("\n");
     }
+
+    world->ennemies = create_room_ennemies(world);
+
+    printf("L : %d, C : %d\n", world->act_room->row, world->act_room->column);
     return world;
 }

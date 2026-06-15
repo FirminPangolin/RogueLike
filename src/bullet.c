@@ -56,3 +56,13 @@ void create_bullet(Player* player){
     player->bullets[player->bullets_shot] = bullet;
     player->bullets_shot += 1;
 }
+
+void free_bullet(World* world, Bullet* bullet, int i){
+    Player* player = world->player;
+    free(bullet);
+    //Décalement
+    for (int j = i; j < player->bullets_shot - 1; j++){
+        player->bullets[j] = player->bullets[j + 1];
+    }
+    player->bullets_shot--;
+}

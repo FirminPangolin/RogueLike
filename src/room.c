@@ -10,6 +10,7 @@ void gen_matrice(int room[MAP_SIZE][MAP_SIZE]){
 }
 
 void init_all_rooms(World* world){
+    //Inits
     for (int i = 0 ; i < MAP_SIZE ; i++){
         for (int j = 0 ; j < MAP_SIZE ; j++){
             if (world->map[i][j] == 1){
@@ -24,6 +25,7 @@ void init_all_rooms(World* world){
         }
     }
 
+    //Links
     for (int i = 0 ; i < MAP_SIZE ; i++){
         for (int j = 0 ; j < MAP_SIZE ; j++){
             Room* r = world->rooms[i][j];

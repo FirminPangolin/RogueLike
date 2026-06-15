@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include "raylib.h"
 #include "constants.h"
+#include "world.h"
+
 typedef struct Bullet{
     //Position
     int x;
@@ -22,5 +24,6 @@ typedef struct Bullet{
 typedef struct Player Player;
 
 void create_bullet(Player* player);
+void free_bullet(World* world, Bullet* bullet, int i);
 
 #endif

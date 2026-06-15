@@ -12,6 +12,7 @@
 
 #define PLAYER_INIT_SPEED 5
 #define PLAYER_MAX_SPEED 25
+#define PLAYER_COLLIDE_IDFRAME 120
 
 #define PLAYER_INIT_HEALTH 3
 #define PLAYER_MAX_BULLETS 1000
@@ -23,8 +24,13 @@
 #define BULLET_INIT_SPEED 10
 #define BULLET_MAX_SPEED 30
 
+//Ennemy
+#define ENNEMY_INIT_WIDTH 32
+#define ENNEMY_INIT_HEIGHT 32
+#define NB_ENNEMIES 3
+
 //Map
-#define MAP_SIZE 9
+#define MAP_SIZE 6
 #define GATE_WIDTH 100
 #define GATE_HEIGHT 20
 

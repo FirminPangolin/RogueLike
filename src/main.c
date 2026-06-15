@@ -24,8 +24,12 @@ int main(void)
         player_movement(world->player);
         player_actions(world->player);
         
-        manage_bullets(world->player);
+        manage_bullets(world, world->player);
         check_room_exit(world, world->player);
+
+        ennemy_movement(world, world->ennemies);
+        check_collision_ennemy_player(world);
+        check_collision_ennemy_bullet(world);
 
         refresh_graphics(world);
     }

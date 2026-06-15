@@ -8,7 +8,10 @@
 #include "bullet.h"
 #include "world.h"
 
-void manage_bullets(Player* player);
+void manage_bullets(World* world, Player* player);
 void check_room_exit(World* world, Player* player);
+void check_collision_ennemy_player(World* world);
+void check_collision_ennemy_bullet(World* world);
+
 
 #endif
