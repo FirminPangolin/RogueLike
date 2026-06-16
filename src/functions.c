@@ -5,6 +5,13 @@ int mini(int a, int b){
     return b;
 }
 
+
+int maxi(int a, int b){
+    if (a > b) return a;
+    return b;
+}
+
+
 float squared(int a){
     return a * a;
 }

@@ -17,8 +17,9 @@ Ennemy* create_ennemy(){
 }
 
 Ennemy** create_room_ennemies(World* world){
-    Ennemy** ennemies = malloc(NB_ENNEMIES * sizeof(Ennemy*));
-    for (int i = 0 ; i < NB_ENNEMIES ; i++){
+    int nbEnnenmyInRoom = maxi(rand()%NB_ENNEMIES, 4);
+    Ennemy** ennemies = malloc(nbEnnenmyInRoom * sizeof(Ennemy*));
+    for (int i = 0 ; i < nbEnnenmyInRoom ; i++){
         ennemies[i] = create_ennemy();
         world->nbEnnemies += 1;
     }

@@ -27,7 +27,7 @@
 //Ennemy
 #define ENNEMY_INIT_WIDTH 32
 #define ENNEMY_INIT_HEIGHT 32
-#define NB_ENNEMIES 5
+#define NB_ENNEMIES 10
 
 //Map
 #define MAP_SIZE 6
