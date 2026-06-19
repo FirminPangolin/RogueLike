@@ -33,11 +33,14 @@ void refresh_graphics(World* world){
                 BLUE
             );
         }
-
+        
         //Ennemies
         for (int i = 0 ; i < world->nbEnnemies; i++){
-            DrawRectangle(world->ennemies[i]->x - 2, world->ennemies[i]->y - 2, world->ennemies[i]->width + 4, world->ennemies[i]->height + 4, BLACK);
-            DrawRectangle(world->ennemies[i]->x, world->ennemies[i]->y, world->ennemies[i]->width, world->ennemies[i]->height, YELLOW);
+            Ennemy* ennemy = world->ennemies[i];
+            DrawRectangle(ennemy->x - 2, ennemy->y - 2, ennemy->width + 4, ennemy->height + 4, BLACK);
+            DrawRectangle(ennemy->x, ennemy->y, ennemy->width, ennemy->height, ennemy->color);
+            DrawRectangle(ennemy->x, ennemy->y - 20, ennemy->width, 10, RED);
+            DrawRectangle(ennemy->x, ennemy->y - 20, (int)(ennemy->health * (int)(ennemy->width / ennemy->init_health)), 10, DARKGREEN);
         }
 
         //Map
@@ -55,5 +58,9 @@ void refresh_graphics(World* world){
                 DrawRectangle(0, SCREEN_HEIGHT / 2 - GATE_WIDTH / 2, GATE_HEIGHT, GATE_WIDTH, (act_room->type == 0)?BLUE:GREEN);
             }
         }
+
+        //TEXTE
+        DrawText(TextFormat("A.S. : %d", player->attack_speed), 10, 50, 20, BLACK);
+
     EndDrawing();
 }

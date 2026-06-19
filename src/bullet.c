@@ -3,7 +3,7 @@
 
 void create_bullet(Player* player){
     Bullet* bullet = malloc(sizeof(Bullet));
-
+    
     //Taille
     bullet->width = BULLET_INIT_WIDTH;
     bullet->height = BULLET_INIT_HEIGHT;

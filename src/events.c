@@ -114,16 +114,22 @@ void check_collision_ennemy_bullet(World* world){
             bool cond_x_gauche = bullet->x >= ennemy->x && bullet->x <= ennemy->x + ennemy->width;
             bool cond_x_droite = bullet->x + bullet->width >= ennemy->x && bullet->x + bullet->width <= ennemy->x + ennemy->width;
 
-            if ((cond_y_bas || cond_y_haut) && (cond_x_gauche || cond_x_droite)){
-                if (ennemy->health > 0){
+            if ((cond_y_bas || cond_y_haut) && (cond_x_gauche || cond_x_droite) && ennemy->invincible == 0){
+                ennemy->invincible = PLAYER_COLLIDE_IDFRAME;
+                free_bullet(world, bullet, j); //DANS TOUS LES CAS
+                if (ennemy->health > 1){ //PERTE VIE CLASSIQUE
                     ennemy->health -= 1;
                 }
-                else{
-                    free_bullet(world, bullet, j);
+                else if (ennemy->health == 1){ //MORT
                     j--;
                     free_ennemy(world, ennemy, i);
                     i--;
                     break;
+                }
+            }
+            else{ //ID FRAMES
+                if (ennemy->invincible > 0){
+                    ennemy->invincible -= 1;
                 }
             }
         }
@@ -138,4 +144,16 @@ void check_room_cleared(World* world){
     else{
         world->roomCleared = 0;
     }
+}
+
+bool check_all_rooms_cleared(World* world){
+    for (int i = 0 ; i < MAP_SIZE ; i ++){
+        for (int j = 0 ; j < MAP_SIZE ; j ++){
+            if (world->map[i][j] == 1 && world->rooms[i][j]->cleared == 0){
+                return false;
+            }
+        }
+    }
+    printf("REUSSI !");
+    return true; //CHANGER CA PLUS TARD <=> ACTION QUAND NIVEAU ENTIER FINI
 }

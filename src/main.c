@@ -32,7 +32,8 @@ int main(void)
         check_collision_ennemy_bullet(world);
 
         check_room_cleared(world);
-
+        check_all_rooms_cleared(world);
+        
         refresh_graphics(world);
     }
     

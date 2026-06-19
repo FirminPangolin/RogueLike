@@ -13,6 +13,7 @@ void check_room_exit(World* world, Player* player);
 void check_collision_ennemy_player(World* world);
 void check_collision_ennemy_bullet(World* world);
 void check_room_cleared(World* world);
+bool check_all_rooms_cleared(World* world);
 void change_room(World* world, Player* player, int dir);
 
 #endif

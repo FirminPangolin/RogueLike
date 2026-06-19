@@ -1,7 +1,12 @@
 #include "ennemy.h"
 #include <math.h>
 
-Ennemy* create_ennemy(){
+typedef enum{
+    TYPE_SLIME,
+    TYPE_ZOMBIE
+} Type;
+
+Ennemy* create_ennemy(Type type){
     Ennemy* ennemy = malloc(sizeof(Ennemy));
 
     ennemy->x = rand()%SCREEN_WIDTH;
@@ -10,9 +15,24 @@ Ennemy* create_ennemy(){
     ennemy->width = ENNEMY_INIT_WIDTH;
     ennemy->height = ENNEMY_INIT_HEIGHT;
 
-    ennemy->speed = PLAYER_INIT_SPEED;
-    ennemy->health = 1;
-
+    ennemy->invincible = 0;
+    
+    switch(type){
+        case TYPE_SLIME:
+            ennemy->speed = 5;
+            ennemy->init_health = 5;
+            ennemy->health = 5;
+            ennemy->color = YELLOW;
+            break;
+        case TYPE_ZOMBIE:
+            ennemy->speed = 7;
+            ennemy->init_health = 1;
+            ennemy->health = 1;
+            ennemy->color = RED;
+            break;
+        default:
+            printf("chelou");
+    }
     return ennemy;
 }
 
@@ -20,7 +40,7 @@ Ennemy** create_room_ennemies(World* world){
     int nbEnnenmyInRoom = maxi(rand()%NB_ENNEMIES, 4);
     Ennemy** ennemies = malloc(nbEnnenmyInRoom * sizeof(Ennemy*));
     for (int i = 0 ; i < nbEnnenmyInRoom ; i++){
-        ennemies[i] = create_ennemy();
+        ennemies[i] = create_ennemy((rand()%2 == 0)?TYPE_SLIME:TYPE_ZOMBIE);
         world->nbEnnemies += 1;
     }
     

@@ -15,9 +15,11 @@ Player* init_player(){
 
     //Données
     player->speed = PLAYER_INIT_SPEED;
-    player->health = PLAYER_INIT_HEALTH;
+    player->health = PLAYER_INIT_HEALTH * 5;
     player->facing = 1; //0 up, 1 right, 2 down, 3 left
     player->invincible = 0;
+    player->shoot_cooldown = 0;
+    player->attack_speed = 15;
 
     player->bullets = malloc(PLAYER_MAX_BULLETS * sizeof(Bullet));
     player->bullets_shot = 0;
@@ -51,20 +53,34 @@ void player_actions(Player* player){
     if (IsKeyReleased(KEY_R)){
         player->health -= 1;
     }
-    if (IsKeyReleased(KEY_I) && player->bullets_shot < PLAYER_MAX_BULLETS){
-        player->facing = 0;
-        create_bullet(player);
+    if (IsKeyReleased(KEY_P)){
+        player->attack_speed -= 1;
     }
-    if (IsKeyReleased(KEY_L) && player->bullets_shot < PLAYER_MAX_BULLETS){
-        player->facing = 1;
-        create_bullet(player);
+    if (player->shoot_cooldown == 0){
+        printf("ok\n");
+        if (IsKeyDown(KEY_I) && player->bullets_shot < PLAYER_MAX_BULLETS){
+            player->facing = 0;
+            create_bullet(player);
+            player->shoot_cooldown = player->attack_speed;
+        }
+        if (IsKeyDown(KEY_L) && player->bullets_shot < PLAYER_MAX_BULLETS){
+            player->facing = 1;
+            create_bullet(player);
+            player->shoot_cooldown = player->attack_speed;
+        }
+        if (IsKeyDown(KEY_K) && player->bullets_shot < PLAYER_MAX_BULLETS){
+            player->facing = 2;
+            create_bullet(player);
+            player->shoot_cooldown = player->attack_speed;
+        }
+        if (IsKeyDown(KEY_J) && player->bullets_shot < PLAYER_MAX_BULLETS){
+            player->facing = 3;
+            create_bullet(player);
+            player->shoot_cooldown = player->attack_speed;
+        }
     }
-    if (IsKeyReleased(KEY_K) && player->bullets_shot < PLAYER_MAX_BULLETS){
-        player->facing = 2;
-        create_bullet(player);
-    }
-    if (IsKeyReleased(KEY_J) && player->bullets_shot < PLAYER_MAX_BULLETS){
-        player->facing = 3;
-        create_bullet(player);
+    else{
+        if (player->shoot_cooldown > 0)
+            player->shoot_cooldown -= 1;
     }
 }

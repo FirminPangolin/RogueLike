@@ -22,6 +22,8 @@ typedef struct Player{
     int health;
     int facing;
     int invincible;
+    int shoot_cooldown;
+    int attack_speed;
 
     Bullet** bullets;
     int bullets_shot;

@@ -22,7 +22,10 @@ typedef struct Ennemy{
     //Données
     float speed;
     int health;
+    int init_health;
     int facing;
+    int invincible;
+    Color color;
 } Ennemy;
 
 Ennemy* create_ennemy();
